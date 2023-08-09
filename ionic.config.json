@@ -1,0 +1,7 @@
+{
+  "name": "NBAPP",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
