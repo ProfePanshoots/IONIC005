@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="textocentrado">home</ion-title>
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img alt="Silhouette of mountains" src="https://media-cldnry.s-nbcnews.com/image/upload/newscms/2020_05/3204601/200128-kobe-bryant-cover-section-tease.jpg" />
+    <ion-card-header>
+      <ion-card-title>Kobe Bryant</ion-card-title>
+      <ion-card-subtitle>1978 - 2020</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Está considerado como uno de los mejores baloncestistas de todos los tiempos. Ganó cinco campeonatos de la NBA con los Lakers y dos medallas de oro olímpicas con la selección estadounidense
+    </ion-card-content>
+    <ion-button [routerLink]="['/detalle']" color="success" size="full" shape="round" fill="outline">Ver más...</ion-button>
+  </ion-card>
+</ion-content>

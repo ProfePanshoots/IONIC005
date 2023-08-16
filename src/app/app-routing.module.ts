@@ -22,6 +22,34 @@ const routes: Routes = [
   {
     path: 'cargando',
     loadChildren: () => import('./pages/cargando/cargando.module').then( m => m.CargandoPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'estadisticas',
+    loadChildren: () => import('./pages/estadisticas/estadisticas.module').then( m => m.EstadisticasPageModule)
+  },
+  {
+    path: 'campeon',
+    loadChildren: () => import('./pages/campeon/campeon.module').then( m => m.CampeonPageModule)
+  },
+  {
+    path: 'fichaje',
+    loadChildren: () => import('./pages/fichaje/fichaje.module').then( m => m.FichajePageModule)
+  },
+  {
+    path: 'detalle',
+    loadChildren: () => import('./pages/detalle/detalle.module').then( m => m.DetallePageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   }
 ];
 
