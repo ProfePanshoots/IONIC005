@@ -1,16 +1,29 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="end">
+    <ion-buttons slot="slot">
       <ion-menu-button auto-hide="false"></ion-menu-button>
     </ion-buttons>
     <ion-title class="textocentrado">jugadores</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">jugadores</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let aux of listaJugadores" [routerLink]="['/jugadores/', aux.id]">
+      <ion-avatar slot="end">
+        <ion-img [src]="aux.imagen"></ion-img>
+      </ion-avatar>
+      {{ aux.nombre }}
+    </ion-item>
+  </ion-list>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="chevron-up-circle"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button>
+        <ion-icon name="person-add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

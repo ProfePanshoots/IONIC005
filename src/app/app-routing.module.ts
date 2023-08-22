@@ -12,8 +12,17 @@ const routes: Routes = [
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
   {
-    path: 'jugadores',
-    loadChildren: () => import('./pages/jugadores/jugadores.module').then( m => m.JugadoresPageModule)
+    path: 'jugadores', 
+    children: [ 
+      {
+        path: "",
+        loadChildren: () => import('./pages/jugadores/jugadores.module').then( m => m.JugadoresPageModule)
+      },
+      {
+        path: ':id',
+        loadChildren: () => import('./pages/jugadores/detalle/detalle.module').then( m => m.DetallePageModule)
+      }
+    ]
   },
   {
     path: 'equipos',
@@ -38,10 +47,6 @@ const routes: Routes = [
   {
     path: 'fichaje',
     loadChildren: () => import('./pages/fichaje/fichaje.module').then( m => m.FichajePageModule)
-  },
-  {
-    path: 'detalle',
-    loadChildren: () => import('./pages/detalle/detalle.module').then( m => m.DetallePageModule)
   },
   {
     path: 'login',

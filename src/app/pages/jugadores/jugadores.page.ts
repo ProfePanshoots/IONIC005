@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { JugadoresserviceService } from 'src/app/services/jugadoresservice.service';
+import { Jugador } from './jugadores.model';
 
 @Component({
   selector: 'app-jugadores',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JugadoresPage implements OnInit {
 
-  constructor() { }
+  listaJugadores: Jugador[] = [];
+
+  constructor(private jugadoresservices: JugadoresserviceService) { }
 
   ngOnInit() {
+    this.listaJugadores = this.jugadoresservices.getAll();
+    //console.log(this.listaJugadores);
+  }
+
+  ionViewWillEnter() {
+    this.listaJugadores = this.jugadoresservices.getAll();
   }
 
 }
