@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { JugadoresserviceService } from 'src/app/services/jugadoresservice.service';
 import { Jugador } from './jugadores.model';
 
@@ -11,7 +12,9 @@ export class JugadoresPage implements OnInit {
 
   listaJugadores: Jugador[] = [];
 
-  constructor(private jugadoresservices: JugadoresserviceService) { }
+  constructor(
+    private router:Router,
+    private jugadoresservices: JugadoresserviceService) { }
 
   ngOnInit() {
     this.listaJugadores = this.jugadoresservices.getAll();
@@ -19,7 +22,33 @@ export class JugadoresPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    //this.listaJugadores = this.jugadoresservices.getAll();
+  }
+
+  listar() {
     this.listaJugadores = this.jugadoresservices.getAll();
   }
 
+  addJugador() {
+    this.router.navigate(['/agregar']);
+  }
+
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      this.listar();
+      event.target.complete();
+    }, 2000);
+  }
+
+  buscarJugador(event: any) {
+    const texto = event.target.value;
+    if (texto && texto.trim() != '') {
+      this.listaJugadores = this.listaJugadores.filter((aux: any) => {
+        // BUSCANDO CUALQUIER COINCIDENCIA EN MAYUS O MINUS
+        return (aux.nombre.toLowerCase().indexOf(texto.toLowerCase()) >- 1);
+      })
+    } else {
+      this.listar();
+    }
+  }
 }

@@ -1,13 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="slot">
+    <ion-buttons slot="start">
       <ion-menu-button auto-hide="false"></ion-menu-button>
     </ion-buttons>
     <ion-title class="textocentrado">jugadores</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="listar()" name="refresh"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar (ionChange)="buscarJugador($event)" animated="true" placeholder="Animated"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-list>
     <ion-item *ngFor="let aux of listaJugadores" [routerLink]="['/jugadores/', aux.id]">
       <ion-avatar slot="end">
@@ -16,14 +27,16 @@
       {{ aux.nombre }}
     </ion-item>
   </ion-list>
+
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button>
       <ion-icon name="chevron-up-circle"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="top">
       <ion-fab-button>
-        <ion-icon name="person-add"></ion-icon>
+        <ion-icon (click)="addJugador()" name="person-add"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
+
 </ion-content>

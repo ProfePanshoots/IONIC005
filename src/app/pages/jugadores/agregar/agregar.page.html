@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/jugadores"></ion-back-button>
+    </ion-buttons>
+    <ion-title>agregar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-input #nombre type="text" label="Nombre" labelPlacement="floating" placeholder="Ej: Kobe Bryant"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input #imagen type="text" label="Imagen" labelPlacement="floating" placeholder="Ej: http://balba.jpg "></ion-input>
+      </ion-item>
+      <ion-button color="secondary" (click)="addJugador(nombre,imagen)" >Agregar</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
