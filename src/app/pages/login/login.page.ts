@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { MenuController, ToastController } from '@ionic/angular';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Usuario } from '../models/usuario.model';
 
@@ -15,10 +15,12 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private usuarioService: UsuariosService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private menu: MenuController
   ) { }
 
   ngOnInit() {
+    this.menu.enable(true);
   }
 
   login(user:any, pass:any) {

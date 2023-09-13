@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>detallecard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngIf="digimon">
+    <div *ngFor="let aux of digimon.images">
+      <img src="{{aux.href}}" alt="">
+    </div>
+    <ion-card-header>
+      <ion-card-title>
+        {{ digimon.name }}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <label> Levels: </label>
+      <ion-chip *ngFor="let lvl of digimon.levels">
+        {{lvl.level }}
+      </ion-chip>
+      <h4>Skill:</h4>
+      <ion-chip *ngFor="let aux of digimon.skills">
+        {{aux.skill}}
+      </ion-chip>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

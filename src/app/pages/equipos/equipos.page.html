@@ -3,14 +3,26 @@
     <ion-buttons slot="end">
       <ion-menu-button auto-hide="false"></ion-menu-button>
     </ion-buttons>
-    <ion-title class="textocentrado">equipos</ion-title>
+    <ion-title class="textocentrado">Lista de Digimon</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">equipos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list>
+    <ion-item *ngFor="let digimon of digimons">
+      <ion-card [routerLink]="'/detallecard/' + digimon.id">
+        <img src="{{digimon.image}}" alt="">
+        <ion-card-header>
+          <ion-card-title>{{digimon.name}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+  <ion-button (click)="cargarMasDatos()">Cargar más información</ion-button>
+  
+  <ion-button (click)="cargarAnteriorPagina()" id="btnAnterior">Anterior</ion-button>
+  <ion-button (click)="cargarSiguientePagina()">Siguiente</ion-button>
 </ion-content>
