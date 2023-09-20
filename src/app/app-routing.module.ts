@@ -67,6 +67,30 @@ const routes: Routes = [
   {
     path: 'detallecard/:id',
     loadChildren: () => import('./pages/detallecard/detallecard.module').then( m => m.DetallecardPageModule)
+  },
+  {
+    path: 'apihome',
+    loadChildren: () => import('./pages/api/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'apiadd',
+    loadChildren: () => import('./pages/api/add/add.module').then( m => m.AddPageModule)
+  },
+  {
+    path: 'apidelete/:id',
+    loadChildren: () => import('./pages/api/delete/delete.module').then( m => m.DeletePageModule)
+  },
+  {
+    path: 'apiupdate/:id',
+    loadChildren: () => import('./pages/api/update/update.module').then( m => m.UpdatePageModule)
+  },
+  {
+    path: 'apilist',
+    loadChildren: () => import('./pages/api/list/list.module').then( m => m.ListPageModule)
+  },
+  {
+    path: 'apidetail/:id',
+    loadChildren: () => import('./pages/api/detail/detail.module').then( m => m.DetailPageModule)
   }
 ];
 

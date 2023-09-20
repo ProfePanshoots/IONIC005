@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MensajesService } from 'src/app/services/util/mensajes.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-equipos',
@@ -13,11 +15,15 @@ export class EquiposPage implements OnInit {
 
   paginaActual = 0;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private mensajeUtil: MensajesService) { }
 
   ngOnInit() {
-    this.cargarDatos();
+    this.mensajeUtil.mensajeToast('warning','Alerta!',2000,'center')
+    
   }
+
+  
+
 
   cargarDatos() {
     const url = `https://www.digi-api.com/api/v1/digimon?page=${this.paginaActual}`;
@@ -47,7 +53,7 @@ export class EquiposPage implements OnInit {
       this.paginaActual--;
       this.cargarDatos();
     }
-    
+
   }
 
 }

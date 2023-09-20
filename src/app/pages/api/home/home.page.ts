@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MensajesService } from 'src/app/services/util/mensajes.service';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +7,9 @@ import { MensajesService } from 'src/app/services/util/mensajes.service';
 })
 export class HomePage implements OnInit {
 
-  constructor(private mensajesUtil: MensajesService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.mensajesUtil.mensajeToast('success','Bienvenido',2000,'bottom')
   }
 
 }
