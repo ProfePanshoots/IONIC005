@@ -10,14 +10,26 @@
       <ion-card-title>NBAPP</ion-card-title>
     </ion-card-header>
   
-    <ion-card-content>
+    <ion-card-content [formGroup]="loginForm">
       <ion-item>
-        <ion-input #user label="Ingrese Usuario:" labelPlacement="floating" placeholder="Ej: panshoots"></ion-input>
+        <ion-input #user [(ngModel)]="emailValue" formControlName="email" label="Ingrese Usuario:" labelPlacement="floating" placeholder="Ej: panshoots"></ion-input>
       </ion-item>
+      <ion-text pasition="stacked" color="danger" *ngIf="loginForm.get('email')?.hasError('required')">
+        El correo es obligatorio.
+      </ion-text>
+      <ion-text pasition="stacked" color="danger" *ngIf="loginForm.get('email')?.hasError('email')">
+        El correo es inválido.
+      </ion-text>
       <ion-item>
-        <ion-input #pass label="Ingrese Contraseña:" labelPlacement="floating" placeholder="Ej: 123456"></ion-input>
+        <ion-input #pass type="password" [(ngModel)]="passValue" formControlName="password" label="Ingrese Contraseña:" labelPlacement="floating" placeholder="Ej: 123456"></ion-input>
       </ion-item>
-      <ion-button (click)="login(user,pass)">Ingresar</ion-button>
+      <ion-text pasition="stacked" color="danger" *ngIf="loginForm.get('password')?.hasError('required')">
+        La contraseña es obligatoria.
+      </ion-text>
+      <ion-text pasition="stacked" color="danger" *ngIf="loginForm.get('password')?.hasError('minlength')">
+        La contraseña debe tener almenos 6 caracteres.
+      </ion-text>
+      <ion-button (click)="login(user,pass)" [disabled]="!loginForm.valid">Ingresar</ion-button>
       <ion-button (click)="register()">Registrarse</ion-button>
     </ion-card-content>
   </ion-card>

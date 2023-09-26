@@ -5,9 +5,15 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">update</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-input #nombre [(ngModel)]="jugador.nombre" type="text" label="Nombre" labelPlacement="floating" placeholder="Ej: Kobe Bryant"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input #genero [(ngModel)]="jugador.genero" type="text" label="Genero" labelPlacement="floating" placeholder="Ej: http://balba.jpg "></ion-input>
+      </ion-item>
+      <ion-button color="secondary" (click)="updateJugador()" >Actualizar</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
