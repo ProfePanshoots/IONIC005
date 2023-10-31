@@ -1,5 +1,5 @@
 export interface IJugadores {
-    id: Number,
+    id: String,
     nombre: String,
     genero: String
 }

@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card>
+  <ion-card *ngIf="jugador">
     <ion-card-header>
       <ion-card-title>{{ jugador.nombre }}</ion-card-title>
       <ion-card-subtitle>{{ jugador.genero }}</ion-card-subtitle>
@@ -16,6 +16,6 @@
     </ion-card-content>
     
   </ion-card>
-  <ion-button color="warning" [routerLink]="['/apiupdate', jugador.id]" >Actualizar</ion-button>
+  <ion-button color="warning" *ngIf="jugador" [routerLink]="['/apiupdate', jugador.id]" >Actualizar</ion-button>
   <ion-button color="danger" (click)="deleteJugador()">Eliminar</ion-button>
 </ion-content>

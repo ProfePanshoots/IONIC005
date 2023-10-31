@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card>
+  <ion-card *ngIf="jugador">
     <ion-card-content>
       <ion-item>
         <ion-input #nombre [(ngModel)]="jugador.nombre" type="text" label="Nombre" labelPlacement="floating" placeholder="Ej: Kobe Bryant"></ion-input>

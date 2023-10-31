@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IJugador } from 'src/app/interfaces/ijugador';
+import { CrudfirebaseService } from 'src/app/services/firebase/crudfirebase.service';
 import { UserapiService } from 'src/app/services/util/userapi.service';
 
 @Component({
@@ -9,12 +11,16 @@ import { UserapiService } from 'src/app/services/util/userapi.service';
 })
 export class ListPage implements OnInit {
 
-  listaJugadores:any = [];
+  listaJugadores!: IJugador[];
 
-  constructor(private api: UserapiService, private router: Router) { }
+  constructor(
+    private api: UserapiService, 
+    private router: Router,
+    private fireServices: CrudfirebaseService
+  ) { }
 
   ngOnInit() {
-    
+    this.listar()
   }
 
   ionViewWillEnter() {
@@ -22,12 +28,9 @@ export class ListPage implements OnInit {
   }
 
   listar() {
-    this.api.listJugadores().subscribe((data) => {
-      //console.log(data)
-      let aux = JSON.stringify(data) // TRANSFORMAMOS LA NFO DEL API
-      this.listaJugadores = JSON.parse(aux) // TRANSFORMAMOS A ARREGLO
-    })
-
+    this.fireServices.getCollection('Jugadores').subscribe((jugadores) => {
+      this.listaJugadores = jugadores
+    });
   }
 
   handleRefresh(event: any) {

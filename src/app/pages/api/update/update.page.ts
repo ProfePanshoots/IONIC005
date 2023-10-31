@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { IJugador } from 'src/app/interfaces/ijugador';
 import { IJugadores } from 'src/app/interfaces/ijugadores';
+import { CrudfirebaseService } from 'src/app/services/firebase/crudfirebase.service';
 import { UserapiService } from 'src/app/services/util/userapi.service';
 
 @Component({
@@ -10,44 +12,42 @@ import { UserapiService } from 'src/app/services/util/userapi.service';
 })
 export class UpdatePage implements OnInit {
 
-  jugador: IJugadores = {
-    id: 0,
-    nombre: 'TEST',
-    genero: 'TEST'
-  }
+  jugador! : IJugador | undefined;
 
   constructor(
     private api: UserapiService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private fireServices: CrudfirebaseService
   ) { }
 
   ngOnInit() {
+    this.getJugador()
   }
 
   ionViewWillEnter() {
-    this.getJugador(this.getId())
+    this.getJugador()
   }
 
-  getId() {
-    let url = this.router.url
-    let aux = url.split("/",3)
-    let id = parseInt(aux[2])
-    return id
-  }
-
-  getJugador(id: Number) {
-    this.api.getJugador(id).subscribe((data:any) => {
-      this.jugador = {
-        id: data[0].id,
-        nombre: data[0].nombre,
-        genero: data[0].genero
-      }
-    })
+  getJugador() {
+    const jugadorId = this.route.snapshot.paramMap.get('id');
+    
+    if ( jugadorId ) {
+      this.fireServices.getJugadorById('Jugadores', jugadorId).subscribe( (jugador) => {
+        this.jugador = jugador || {} as IJugador;
+        this.jugador.id = jugadorId;
+      });
+    }
   }
 
   updateJugador() {
-    this.api.updateJugador(this.jugador).subscribe()
-    this.router.navigate(['/apilist'])
+    //this.api.updateJugador(this.jugador).subscribe()
+    const jugadorId = this.route.snapshot.paramMap.get('id');
+    if ( jugadorId && this.jugador ) {
+      this.fireServices.updateJugador('Jugadores',jugadorId,this.jugador);
+      this.router.navigate(['/apilist'])
+    }
+    
   }
 
 }
