@@ -3,7 +3,7 @@
     <ion-buttons slot="end">
       <ion-menu-button auto-hide="false"></ion-menu-button>
     </ion-buttons>
-    <ion-title class="textocentrado">home</ion-title>
+    <ion-title class="textocentrado">{{ "bienvenido" | translate }}</ion-title>
     <ion-buttons slot="start">
       <ion-button>
         <ion-icon slot="icon-only" name="search"></ion-icon>
@@ -13,5 +13,14 @@
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label>{{ "selecciona" | translate }}</ion-label>
+    <ion-select cancelText="Cancel" [(ngModel)]="idioma" placeholder="Seleciona" (ionChange)="changeLang($event)">
+      <ion-select-option *ngFor="let lang of langs">{{ lang }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
   <app-card [mostrarTitulo]="false" imagen="https://media-cldnry.s-nbcnews.com/image/upload/newscms/2020_05/3204601/200128-kobe-bryant-cover-section-tease.jpg" [mostrarBoton]="false" titulo="Kobe Bryant" fecha="1979-2020" descripcion="Está considerado como uno de los mejores baloncestistas de todos los tiempos. Ganó cinco campeonatos de la NBA con los Lakers y dos medallas de oro olímpicas con la selección estadounidense."></app-card>
+
+  <ion-button (click)="logout()">Cerrar Sesion</ion-button>
 </ion-content>

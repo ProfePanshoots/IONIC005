@@ -29,6 +29,8 @@
     "@capacitor/status-bar": "5.0.6",
     "@ionic/angular": "^7.0.0",
     "@ionic/cli": "^7.1.1",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
     "firebase": "^10.5.2",
     "ionic": "^5.4.16",
     "ionicons": "^7.0.0",

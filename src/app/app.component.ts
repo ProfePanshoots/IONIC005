@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -26,7 +27,10 @@ export class AppComponent {
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   
-  constructor(private router: Router) {}
+  constructor(private router: Router, private translateService: TranslateService) {
+    this.translateService.setDefaultLang('fr');
+    this.translateService.addLangs(['es','en']);
+  }
 
   monstrarMenu() {
     return this.router.url !== '/login';
@@ -37,4 +41,6 @@ export class AppComponent {
     return aux.includes(this.router.url.substring(1)) // ELIMINAMOS EL "/"
     //return this.router.url == '/apihome';
   }
+
+
 }
